@@ -53,28 +53,26 @@ fun printPayslipRounding(){
     val grossPay = (monthlySalary + (annualBonus/12))
     val totalDeductions = (monthlyPAYE + monthlyPrsi + cycleToWork)
 
-    println("")
-    println("")
-    println("")
-
-    println("--------------------Monthly Payslip---------------------------------------------")
-    println("--------------------------------------------------------------------------------")
-    println("--------------------------------------------------------------------------------")
-    println("---Employee Name: ${firstName.uppercase()} ${surName.uppercase()}($gender)-----Employee ID:$employeeId------------------------------")
-    println("--------------------------------------------------------------------------------")
-    println("--------------------------------------------------------------------------------")
-    println("---PAYMENT DETAILS-----------------DEDUCTION DETAILS----------------------------")
-    println("--------------------------------------------------------------------------------")
-    println("---Salary:${roundTwoDecimals(monthlySalary)}------------------PAYE:${roundTwoDecimals(monthlyPAYE)}---------------------------------")
-    println("---Bonus:${roundTwoDecimals(annualBonus / 12)}--------------------PRSI:${roundTwoDecimals(monthlyPrsi)}----------------------------------")
-    println("--------------------------------------------------------------------------------")
-    println("--------------------------------------------------------------------------------")
-    println("--------------------------------------------------------------------------------")
-    println("---Gross:${roundTwoDecimals(grossPay)}---------------------------Total Deductions: ${roundTwoDecimals(totalDeductions)}------------")
-    println("--------------------------------------------------------------------------------")
-    println("--------------------------------------------------------------------------------")
-    println("------------------------------------------Net Pay: ${roundTwoDecimals(grossPay - totalDeductions)}----------------------")
-    println("--------------------------------------------------------------------------------")
+    println(
+        """
+                                    Monthly Payslip
+        ----------------------------------------------------------------------
+        Name: ${firstName.uppercase()}  ${surName.uppercase()}  (${gender.uppercase()}),  ID: $employeeId                  
+        ----------------------------------------------------------------------  
+            PAYMENT DETAILS (Gross Pay: ${roundTwoDecimals(grossPay)})                                                                    
+        ----------------------------------------------------------------------
+                   Salary: ${roundTwoDecimals(monthlySalary)}
+                   Bonus:  ${roundTwoDecimals(annualBonus / 12)}            
+        ----------------------------------------------------------------------
+            DEDUCTION DETAILS (Total Deductions: ${roundTwoDecimals(totalDeductions)})      
+        ----------------------------------------------------------------------
+                   PAYE: ${roundTwoDecimals(monthlyPAYE)}               
+                   PRSI: ${roundTwoDecimals(monthlyPrsi)}  
+                   Cycle To Work: $cycleToWork         
+        ----------------------------------------------------------------------
+            NET PAY: ${roundTwoDecimals(grossPay - totalDeductions)} 
+        ----------------------------------------------------------------------"""
+    )
 
 
 }
