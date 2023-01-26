@@ -1,3 +1,5 @@
+import kotlin.math.round
+
 val firstName = "Joe"
 val surName = "Soap"
 val gender = 'm'
@@ -63,16 +65,17 @@ fun printPayslipRounding(){
     println("--------------------------------------------------------------------------------")
     println("---PAYMENT DETAILS-----------------DEDUCTION DETAILS----------------------------")
     println("--------------------------------------------------------------------------------")
-    println("---Salary:${"%.2f".format(monthlySalary)}------------------PAYE:${"%.2f".format(monthlyPAYE)}---------------------------------")
-    println("---Bonus:${"%.2f".format((annualBonus / 12))}--------------------PRSI:${"%.2f".format(monthlyPrsi)}----------------------------------")
+    println("---Salary:${roundTwoDecimals(monthlySalary)}------------------PAYE:${roundTwoDecimals(monthlyPAYE)}---------------------------------")
+    println("---Bonus:${roundTwoDecimals(annualBonus / 12)}--------------------PRSI:${roundTwoDecimals(monthlyPrsi)}----------------------------------")
     println("--------------------------------------------------------------------------------")
     println("--------------------------------------------------------------------------------")
     println("--------------------------------------------------------------------------------")
-    println("---Gross:${"%.2f".format(grossPay)}---------------------------Total Deductions: ${"%.2f".format(totalDeductions)}------------")
+    println("---Gross:${roundTwoDecimals(grossPay)}---------------------------Total Deductions: ${roundTwoDecimals(totalDeductions)}------------")
     println("--------------------------------------------------------------------------------")
     println("--------------------------------------------------------------------------------")
-    println("------------------------------------------Net Pay: ${"%.2f".format((grossPay - totalDeductions))}----------------------")
+    println("------------------------------------------Net Pay: ${roundTwoDecimals(grossPay - totalDeductions)}----------------------")
     println("--------------------------------------------------------------------------------")
 
 
 }
+fun roundTwoDecimals(number: Double) = round(number * 100) / 100
