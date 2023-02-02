@@ -1,14 +1,6 @@
 import kotlin.math.round
 
-val firstName = "Joe"
-val surName = "Soap"
-val gender = 'm'
-val employeeId = 6143
-val grossSalary = 67543.21
-val PAYE = 38.5
-val PRSI = 5.2
-val annualBonus = 1450.50
-val cycleToWork = 54.33
+
 
 fun main(args: Array<String>) {
     //println("Payslip Printer")
@@ -47,17 +39,17 @@ fun menu() : Int {
          Enter Option : """)
     return readLine()!!.toInt()
 }
-fun getFullName() = when (gender){
-    'm', 'M' -> "Mr. $firstName $surName"
-    'f', 'F' -> "Ms. $firstName $surName"
-    else -> "$firstName $surName"
+fun getFullName() = when (employee.gender){
+    'm', 'M' -> "Mr. ${employee.firstName} ${employee.surName}"
+    'f', 'F' -> "Ms. ${employee.firstName} ${employee.surName}"
+    else -> "${employee.firstName} ${employee.surName}"
 }
 
-    fun getMonthlySalary() = roundTwoDecimals(grossSalary/12)
-    fun getMonthlyPrsi() = roundTwoDecimals(getMonthlySalary() * (PRSI / 100))
-    fun getMonthlyPAYE() = roundTwoDecimals(getMonthlySalary() * (PAYE / 100))
-    fun getGrossPay() = roundTwoDecimals(getMonthlySalary() + (annualBonus/12))
-    fun getTotalDeductions() = roundTwoDecimals(getMonthlyPAYE() + getMonthlyPrsi() + cycleToWork)
+    fun getMonthlySalary() = roundTwoDecimals(employee.grossSalary/12)
+    fun getMonthlyPrsi() = roundTwoDecimals(getMonthlySalary() * (employee.PRSI / 100))
+    fun getMonthlyPAYE() = roundTwoDecimals(getMonthlySalary() * (employee.PAYE / 100))
+    fun getGrossPay() = roundTwoDecimals(getMonthlySalary() + (employee.annualBonus/12))
+    fun getTotalDeductions() = roundTwoDecimals(getMonthlyPAYE() + getMonthlyPrsi() + employee.cycleToWork)
 
 fun getNetMonthlyPay() = roundTwoDecimals(roundTwoDecimals(getGrossPay() - getTotalDeductions()))
 
@@ -66,18 +58,18 @@ fun getNetMonthlyPay() = roundTwoDecimals(roundTwoDecimals(getGrossPay() - getTo
           """
                                     Monthly Payslip
         ----------------------------------------------------------------------
-        Name: ${firstName.uppercase()}  ${surName.uppercase()}  (${gender.uppercase()}),  ID: $employeeId                  
+        Name: ${employee.firstName.uppercase()}  ${employee.surName.uppercase()}  (${employee.gender.uppercase()}),  ID: ${employee.employeeId}                  
         ----------------------------------------------------------------------  
             PAYMENT DETAILS (Gross Pay: ${getGrossPay()})                                                                    
         ----------------------------------------------------------------------
                    Salary: ${getMonthlySalary()}
-                   Bonus:  ${roundTwoDecimals(annualBonus / 12)}            
+                   Bonus:  ${roundTwoDecimals(employee.annualBonus / 12)}            
         ----------------------------------------------------------------------
             DEDUCTION DETAILS (Total Deductions: ${getTotalDeductions()})      
         ----------------------------------------------------------------------
                    PAYE: ${getMonthlyPAYE()}}               
                    PRSI: ${getMonthlyPrsi()}}  
-                   Cycle To Work: $cycleToWork         
+                   Cycle To Work: ${employee.cycleToWork}         
         ----------------------------------------------------------------------
             NET PAY: ${roundTwoDecimals(getGrossPay() - getTotalDeductions())} 
         ----------------------------------------------------------------------"""
