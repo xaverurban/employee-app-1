@@ -3,6 +3,7 @@ import kotlin.math.round
 
 
 fun main(args: Array<String>) {
+    add()
     //println("Payslip Printer")
     //printPayslip()
     //printPayslipRounding()
@@ -76,5 +77,28 @@ fun getNetMonthlyPay() = roundTwoDecimals(roundTwoDecimals(getGrossPay() - getTo
       )
 
   }
+fun add(){
+    println("Enter First Name:")
+    val firstName = readLine().toString()
+    println("Enter Surname:")
+    val surName = readLine().toString()
+    println("Enter Gender:")
+    val gender = readLine()!!.toCharArray()[0]
+    println("Enter Employee ID:")
+    val employeeId = readLine()!!.toInt()
+    println("Enter Gross Salary:")
+    val grossSalary = readLine()!!.toDouble()
+    println("Enter PAYE %:")
+    val PAYE = readLine()!!.toDouble()
+    println("Enter PRSI %:")
+    val PRSI = readLine()!!.toDouble()
+    println("Enter Annual Bonus:")
+    val annualBonus = readLine()!!.toDouble()
+    println("Enter First Name:")
+    val cycleToWork = readLine()!!.toDouble()
+
+    employee = Employee(firstName, surName, gender, employeeId,
+        grossSalary, PAYE, PRSI, annualBonus, cycleToWork)
+}
 
 fun roundTwoDecimals(number: Double) = round(number * 100) / 100
