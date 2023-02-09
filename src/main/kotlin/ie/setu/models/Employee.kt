@@ -1,3 +1,7 @@
+package ie.setu.models
+
+import roundTwoDecimals
+
 class Employee(
     var firstName : String,
     var surName : String,
@@ -48,7 +52,7 @@ class Employee(
     }
 
     override fun toString(): String {
-        return "Employee(firstName='$firstName', surName='$surName', gender=$gender, employeeId=$employeeId, grossSalary=$grossSalary, PAYE=$PAYE, PRSI=$PRSI, annualBonus=$annualBonus, cycleToWork=$cycleToWork)"
+        return "ie.setu.models.Employee(firstName='$firstName', surName='$surName', gender=$gender, employeeId=$employeeId, grossSalary=$grossSalary, PAYE=$PAYE, PRSI=$PRSI, annualBonus=$annualBonus, cycleToWork=$cycleToWork)"
     }
 
 }

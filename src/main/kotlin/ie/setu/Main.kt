@@ -1,17 +1,25 @@
+import ie.setu.models.Employee
+
+import ie.setu.controllers.EmployeeAPI
+import mu.KotlinLogging
 import kotlin.math.round
 
+val logger = KotlinLogging.logger {}
 
 var employees = EmployeeAPI()
 fun main(args: Array<String>) {
+    logger.info { "Launching ie.setu.models.Employee App" }
     start()
+
+
 }
 fun menu() : Int {
     print(""" 
-         |Employee Menu
-         |   1. Add Employee
+         |ie.setu.models.Employee Menu
+         |   1. Add ie.setu.models.Employee
          |   2. List All Employees
          |   3. Search Employees 
-         |   4. Print Payslip for Employee
+         |   4. Print Payslip for ie.setu.models.Employee
          |  -1. Exit
          |       
          |Enter Option : """.trimMargin())
@@ -38,10 +46,12 @@ fun start() {
 }
 
 fun list(){
+    logger.info { "Start List Employees" }
     employees.findAll().forEach{ println(it) }
 }
 
 fun search() {
+    logger.info { "Start Search ie.setu.models.Employee by ID" }
     val employee = getEmployeeById()
     if (employee == null)
         println("No employee found")
@@ -67,13 +77,14 @@ fun dummyData() {
 
 
 fun add(){
+    logger.info { "Start Adding ie.setu.models.Employee" }
     println("Enter First Name:")
     val firstName = readLine().toString()
     println("Enter Surname:")
     val surName = readLine().toString()
     println("Enter Gender:")
     val gender = readLine()!!.toCharArray()[0]
-    println("Enter Employee ID:")
+    println("Enter ie.setu.models.Employee ID:")
     val employeeId = readLine()!!.toInt()
     println("Enter Gross Salary:")
     val grossSalary = readLine()!!.toDouble()
