@@ -28,31 +28,45 @@ class Employee(
     fun getNetMonthlyPay() = roundTwoDecimals(roundTwoDecimals(getGrossPay() - getTotalDeductions()))
 
     fun getPayslip() {
-        println(
-            """
-                                    Monthly Payslip
-        ----------------------------------------------------------------------
-        Name: ${firstName.uppercase()}  ${surName.uppercase()}  (${gender.uppercase()}),  ID: ${employeeId}                  
-        ----------------------------------------------------------------------  
-            PAYMENT DETAILS (Gross Pay: ${getGrossPay()})                                                                    
-        ----------------------------------------------------------------------
-                   Salary: ${getMonthlySalary()}
-                   Bonus:  ${roundTwoDecimals(annualBonus / 12)}            
-        ----------------------------------------------------------------------
-            DEDUCTION DETAILS (Total Deductions: ${getTotalDeductions()})      
-        ----------------------------------------------------------------------
-                   PAYE: ${getMonthlyPAYE()}}               
-                   PRSI: ${getMonthlyPrsi()}}  
-                   Cycle To Work: ${cycleToWork}         
-        ----------------------------------------------------------------------
-            NET PAY: ${roundTwoDecimals(getGrossPay() - getTotalDeductions())} 
-        ----------------------------------------------------------------------"""
-        )
-
+        println("""
+        =======================================================================
+                            💰💰💰  Monthly Payslip  💰💰💰
+        =======================================================================
+                 💼 Name: ${firstName.uppercase()}  ${surName.uppercase()}  (${gender.uppercase()}),  ID: ${employeeId}     💼
+        =======================================================================  
+                 💰 PAYMENT DETAILS (Gross Pay: ${getGrossPay()}) 💰                                                                    
+        =======================================================================
+                   💵 Salary: ${getMonthlySalary()}
+                   🎁 Bonus:  ${roundTwoDecimals(annualBonus / 12)}            
+        =======================================================================
+           💸 DEDUCTION DETAILS (Total Deductions: ${getTotalDeductions()}) 💸     
+        =======================================================================
+                   💰 PAYE: ${getMonthlyPAYE()}               
+                   💰 PRSI: ${getMonthlyPrsi()}  
+                   🚴 Cycle To Work: ${cycleToWork}         
+        =======================================================================
+           💸 NET PAY: ${roundTwoDecimals(getGrossPay() - getTotalDeductions())} 💸
+        =======================================================================
+    """.trimIndent())
     }
 
     override fun toString(): String {
-        return "ie.setu.models.Employee(firstName='$firstName', surName='$surName', gender=$gender, employeeId=$employeeId, grossSalary=$grossSalary, PAYE=$PAYE, PRSI=$PRSI, annualBonus=$annualBonus, cycleToWork=$cycleToWork)"
+        return """
+        +--------------------------+
+        |   Employee Information   |
+        +--------------------------+
+         First Name: $firstName 
+         Surname: $surName 
+         Gender: $gender 
+         Employee ID: $employeeId 
+         ------------------------
+         Gross Salary: $grossSalary 
+         ------------------------
+         PAYE: $PAYE
+         PRSI: $PRSI
+         Annual Bonus: $annualBonus
+         Cycle To Work: $cycleToWork
+        +--------------------------+
+    """.trimIndent()
     }
-
 }

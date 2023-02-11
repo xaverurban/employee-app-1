@@ -4,6 +4,7 @@ import ie.setu.controllers.EmployeeAPI
 import mu.KotlinLogging
 import kotlin.math.round
 
+
 val logger = KotlinLogging.logger {}
 
 var employees = EmployeeAPI()
@@ -13,16 +14,29 @@ fun main(args: Array<String>) {
 
 
 }
-fun menu() : Int {
-    print(""" 
-         |ie.setu.models.Employee Menu
-         |   1. Add ie.setu.models.Employee
-         |   2. List All Employees
-         |   3. Search Employees 
-         |   4. Print Payslip for ie.setu.models.Employee
-         |  -1. Exit
-         |       
-         |Enter Option : """.trimMargin())
+fun menu(): Int {
+    println("""
+    +---------------------------------------+
+                                            
+               💼 Employee Menu 💼            
+    +---------------------------------------+                             
+       📝   1. Add Employee 🧑‍💼           
+       ❌   2. Delete Employee ❌           
+       ---------------------------------- 
+       📊   3. List All Employees 👨‍💼‍👨‍💼‍👨‍💼 
+       🔍   4. Search Employees 🔍         
+       👨‍💼   5. List Employees using First Name 👨‍💼 
+       📊   6. List Employees by Salary in Descending order 💰 
+       ---------------------------------                                  
+       💰   7. Print Payslip for Employee 💸 
+       ---------------------------------                               
+       🔥   10. Dummy Data                  
+       🚪   0. Exit 🚪                    
+    +---------------------------------------+  
+                         
+       🎬 Enter Option :                
+                                           
+    """.trimIndent())
     return readLine()!!.toInt()
 }
 
@@ -34,15 +48,19 @@ fun start() {
         input = menu()
         when (input) {
             1 -> add()
-            2 -> list()
-            3 -> search()
-            4 -> paySlip()
-            -99 -> dummyData()
-            -1 -> println("Exiting App")
+            2 ->delete()
+            3 -> list()
+            4 -> search()
+            5 -> findByFirstName()
+            6 ->listEmployeesBySalary()
+            7 -> paySlip()
+            10 -> dummyData()
+            0 -> println("Exiting App")
             else -> println("Invalid Option")
         }
         println()
     } while (input != -1)
+
 }
 
 fun list(){
@@ -64,15 +82,33 @@ internal fun getEmployeeById(): Employee? {
     return employees.findOne(employeeID)
 }
 
+fun findByFirstName() {
+    logger.info { "Start Searching Employees by First Name" }
+    print("Enter employees first name: ")
+    val firstName = readLine().toString()
+    val result = employees.findAll().filter { it.firstName == firstName }
+    if (result.isEmpty()) {
+        println("There is no Employees with first name $firstName !")
+    } else {
+
+        result.forEach { println(it)
+        }
+    }
+}
 fun paySlip(){
     val employee = getEmployeeById()
     if (employee != null)
         println(employee.getPayslip())
 }
+
 fun dummyData() {
     employees.create(Employee("Joe", "Soap", 'm', 0, 35655.43, 31.0, 7.5, 2000.0, 25.6))
     employees.create(Employee("Joan", "Murphy", 'f', 0, 54255.13, 32.5, 7.0, 1500.0, 55.3))
     employees.create(Employee("Mary", "Quinn", 'f', 0, 75685.41, 40.0, 8.5, 4500.0, 0.0))
+    employees.create(Employee("Bobby", "Notbuilder", 'm', 0, 65324.0, 15.0, 12.0, 43230.0, 50.0))
+    employees.create(Employee("Sammy", "Smitty", 'f', 0, 125000.0, 18.0, 21.0, 50000.0, 0.0))
+    employees.create(Employee("Will", "Iam", 'm', 0, 24000.0, 12.0, 28.5, 2000.0, 80.0))
+    employees.create(Employee("David", "Rock", 'f', 0, 32000.0, 25.0, 18.5, 12000.0, 18.0))
 }
 
 
@@ -102,4 +138,25 @@ employees.create(Employee(firstName, surName, gender, employeeId, grossSalary, P
 
 fun roundTwoDecimals(number: Double) = round(number * 100) / 100
 
+fun delete() {
+    logger.info { "Start Deleting Employee" }
+    val employee = getEmployeeById()
+    if (employee != null) {
+        employees.delete(employee.employeeId)
+        println("Employee with ID ${employee.employeeId} has been removed")
+    } else {
+        println("No Employees found with that ID!")
+    }
+}
 
+fun listEmployeesBySalary() {
+    logger.info { "Listing Employees by Gross Salary" }
+    val minSalary = 50000.0
+    val maxSalary = 100000.0
+    val result = employees.findAll().filter { it.grossSalary in minSalary .. maxSalary }
+    if (result.isEmpty()) {
+        println("No Employees with their salary between $minSalary - $maxSalary")
+    } else {
+        result.forEach { println(it) }
+    }
+}
