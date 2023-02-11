@@ -8,11 +8,11 @@ It is an employee app for calculationg different things related to a salary.
 
 ## Project Purpose
 The purpose of this project is to calculate net payment, total deduction, 
-gross pay and to display the payslip for Joe Soap.
+gross pay and to display the payslip for different employees.
 
 ## Getting started with the project
 You can get started by running the app, looking in the console 
-and reading what each thing dose. Then you can proceed to enter what detail you want displayed.
+and reading what each menu item dose.
 
 ## Getting Help
 You can get help by contacting the author, Xaver Urban.
